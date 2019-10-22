@@ -1,0 +1,88 @@
+id: publication
+label: Publication Nodes
+audit: true
+migration_tags:
+  - Drupal 7
+  - Content
+deriver: Drupal\node\Plugin\migrate\D7NodeDeriver
+dependencies:
+  enforced:
+    module:
+      - aceee_migration
+
+migration_group: aceee
+source:
+  plugin: aceee_publication_node
+  node_type: publication
+destination:
+  plugin: 'entity:node'
+process:
+  type:
+    plugin: default_value
+    default_value: article
+  uid:
+    plugin: default_value
+    default_value: 1
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+
+  field_resource_type:
+    plugin: iterator
+    source: field_pubtype
+    process:
+      target_id:
+        -
+          plugin: text_to_taxonomy
+          vocabulary: resource_type
+
+  para_text:
+    plugin: migration
+    migration: publication_wysiwyg
+    source: nid
+
+  para_pdf:
+    plugin: migration
+    migration: pdf_download
+    source: nid
+
+  para_hero:
+    plugin: migration
+    migration: hero_resource
+    source: nid
+
+  field_page_hero:
+    plugin: iterator
+    source:
+      - '@para_hero'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+
+  field_components:
+    plugin: iterator
+    source:
+      - '@para_text'
+      - '@para_pdf'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+
+migration_dependencies:
+  required:
+    - text_to_taxonomy
+    - publication_wysiwyg
+    - pdf_download
+    - hero_resource
+  optional: {  }

@@ -1,0 +1,10 @@
+name: ACEEE Migration
+type: module
+description: ACEEE custom migration import.
+core: 8.x
+package: ACEEE
+dependencies:
+  - migrate
+  - migrate_plus
+  - migrate_tools
+version: VERSION

@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - aceee_migration
+id: aceee
+label: 'ACEEE Imports'
+description: 'A container for all ACEEE mirgrations.'
+source_type: 'Drupal 7'
+module: null
+shared_configuration:
+  source:
+    key: migrate

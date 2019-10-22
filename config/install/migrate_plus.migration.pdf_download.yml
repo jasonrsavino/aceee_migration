@@ -1,0 +1,43 @@
+id: pdf_download
+label: Convert multiple fields into PDF Download paragraph
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - aceee_migration
+
+migration_group: aceee
+source:
+  plugin: aceee_publication_node
+  node_type: publication
+
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: pdf_download
+
+process:
+  field_endpoint_url:
+    plugin: field_link
+    uri_scheme: 'https://'
+    source: field_url
+
+  field_pdf_title: title
+
+  field_gated_file:
+    plugin: gated_file
+    source: field_report_number
+
+  field_pdf_type:
+    plugin: iterator
+    source: field_pubtype
+    process:
+      target_id:
+        -
+          plugin: text_to_taxonomy
+          vocabulary: resource_type
+
+migration_dependencies:
+  required:
+    - text_to_taxonomy
+  optional: {  }
