@@ -1,0 +1,51 @@
+id: pdf_media
+label: PDF to Media
+langcode: en
+
+dependencies:
+  enforced:
+    module:
+      - aceee_migration
+
+migration_group: aceee
+
+migration_tags:
+  - Custom
+
+source:
+  plugin: pdf_entity
+  scheme: public
+  type: document
+
+process:
+  bundle: file
+
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+
+  name: filename
+
+  uid:
+    plugin: default_value
+    default_value: 1
+
+  status: status
+  created: timestamp
+  changed: timestamp
+
+  'field_media_pdf/target_id':
+    plugin: migration_lookup
+    migration: aceee_files
+
+  'field_media_pdf/display': 1
+  'field_media_pdf/description': filename
+
+destination:
+  plugin: entity:media
+  default_bundle: pdf_file
+
+migration_dependencies:
+  required: {  }
+  optional: {  }

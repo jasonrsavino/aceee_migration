@@ -1,0 +1,52 @@
+id: image_media
+label: Images to Media
+langcode: en
+
+dependencies:
+  enforced:
+    module:
+      - aceee_migration
+
+migration_group: aceee
+
+migration_tags:
+  - Custom
+
+source:
+  plugin: file_entity
+  type: image
+
+process:
+  bundle: image
+
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+
+  name: filename
+
+  uid:
+    plugin: default_value
+    default_value: 1
+
+  status: status
+  created: timestamp
+  changed: timestamp
+
+  'field_media_image/target_id':
+    plugin: migration_lookup
+    migration: aceee_files
+    source: fid
+
+  'field_media_image/alt': filename
+  'field_media_image/title': filename
+
+destination:
+  plugin: entity:media
+  default_bundle: image
+
+migration_dependencies:
+  required:
+    - aceee_files
+  optional: {  }

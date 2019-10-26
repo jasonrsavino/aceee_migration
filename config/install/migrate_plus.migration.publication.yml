@@ -12,7 +12,7 @@ dependencies:
 
 migration_group: aceee
 source:
-  plugin: aceee_publication_node
+  plugin: d7_node
   node_type: publication
 destination:
   plugin: 'entity:node'
@@ -28,7 +28,6 @@ process:
     source: language
     default_value: "und"
   title: title
-  uid: node_uid
   status: status
   created: created
   changed: changed
@@ -51,7 +50,6 @@ process:
     plugin: migration
     migration: publication_wysiwyg
     source: nid
-
   para_pdf:
     plugin: migration
     migration: pdf_download

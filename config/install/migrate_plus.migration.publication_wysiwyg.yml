@@ -1,5 +1,5 @@
 id: publication_wysiwyg
-label: Convert Body field to WYSIWYG paragraph
+label: Create WYSIWYG paragraphs
 langcode: en
 status: true
 dependencies:
@@ -9,7 +9,7 @@ dependencies:
 
 migration_group: aceee
 source:
-  plugin: aceee_publication_node
+  plugin: d7_node
   node_type: publication
 
 destination:

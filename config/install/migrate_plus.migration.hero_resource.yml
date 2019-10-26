@@ -1,5 +1,5 @@
 id: hero_resource
-label: Convert image field into Hero paragraph
+label: 'Hero: Resource'
 langcode: en
 status: true
 dependencies:
@@ -9,7 +9,7 @@ dependencies:
 
 migration_group: aceee
 source:
-  plugin: aceee_publication_node
+  plugin: d7_node
   node_type: publication
 
 destination:
@@ -17,18 +17,9 @@ destination:
   default_bundle: hero_resource
 
 process:
-  field_hero_headline:
-    plugin: iterator
-    source: title
-    process:
-      value: value
-      format:
-        plugin: default_value
-        default_value: full_html
-
-#   field_hero_background: []
-# field_image_attached
+  field_hero_headline: title
 
 migration_dependencies:
-  required: {  }
+  required:
+    - aceee_files
   optional: {  }

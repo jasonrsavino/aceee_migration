@@ -1,0 +1,41 @@
+id: media_video
+label: Remote Videos
+migration_tags:
+  - Custom
+migration_group: aceee
+
+source:
+  plugin: file_entity
+  type: video
+  scheme:
+    - "youtube"
+  constants:
+    bundle: 'remote_video'
+
+process:
+  bundle: 'constants/bundle'
+
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+
+  name: filename
+
+  uid:
+    plugin: default_value
+    default_value: 1
+
+  status: status
+  created: timestamp
+  changed: timestamp
+
+  field_media_oembed_video:
+    plugin: youtube
+    source: uri
+
+destination:
+  plugin: entity:media
+  migration_dependencies:
+    required:
+      - aceee_files
