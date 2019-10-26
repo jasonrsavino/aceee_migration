@@ -7,4 +7,8 @@ dependencies:
   - migrate
   - migrate_plus
   - migrate_tools
+  - migrate_file
+  - migrate_drupal
+  - migrate_drupal_ui
+  - migrate_file_to_media
 version: VERSION
