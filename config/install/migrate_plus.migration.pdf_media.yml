@@ -14,7 +14,6 @@ migration_tags:
 
 source:
   plugin: pdf_entity
-  scheme: public
   type: document
 
 process:
@@ -38,6 +37,7 @@ process:
   'field_media_pdf/target_id':
     plugin: migration_lookup
     migration: aceee_files
+    source: fid
 
   'field_media_pdf/display': 1
   'field_media_pdf/description': filename
@@ -47,5 +47,6 @@ destination:
   default_bundle: pdf_file
 
 migration_dependencies:
-  required: {  }
+  required:
+    - aceee_files
   optional: {  }

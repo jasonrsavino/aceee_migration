@@ -27,6 +27,7 @@ process:
   'field_pdf_file/target_id':
     plugin: migration_lookup
     migration: pdf_media
+    source: fid
 
   field_gated_file:
     plugin: gated_file
