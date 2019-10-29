@@ -83,4 +83,7 @@ migration_dependencies:
     - publication_wysiwyg
     - pdf_download
     - hero_resource
+    - pdf_media
+    - image_media
+    - media_video
   optional: {  }

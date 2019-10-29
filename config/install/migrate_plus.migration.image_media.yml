@@ -14,10 +14,13 @@ migration_tags:
 
 source:
   plugin: file_entity
+  scheme: public
   type: image
+  constants:
+    bundle: 'image'
 
 process:
-  bundle: image
+  bundle: 'constants/bundle'
 
   langcode:
     plugin: default_value
@@ -27,8 +30,13 @@ process:
   name: filename
 
   uid:
-    plugin: default_value
-    default_value: 1
+    -
+      plugin: skip_on_empty
+      method: process
+      source: uid
+    -
+      plugin: default_value
+      default_value: 1
 
   status: status
   created: timestamp
@@ -45,8 +53,6 @@ process:
 destination:
   plugin: entity:media
   default_bundle: image
-
-migration_dependencies:
-  required:
-    - aceee_files
-  optional: {  }
+  migration_dependencies:
+    required:
+      - aceee_files
