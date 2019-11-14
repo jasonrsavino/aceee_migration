@@ -12,7 +12,7 @@ dependencies:
 
 migration_group: aceee
 source:
-  plugin: d7_node
+  plugin: aceee_migration_node
   node_type: publication
 destination:
   plugin: 'entity:node'
@@ -36,6 +36,10 @@ process:
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
+  'path/pathauto': 
+    plugin: default_value
+    default_value: 0 # Disable pathauto.
+  'path/alias': alias
 
   field_resource_type:
     plugin: iterator
